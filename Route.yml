@@ -1,0 +1,49 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: application-route
+  namespace: entrega-grupo-20
+  selfLink: >-
+    /apis/route.openshift.io/v1/namespaces/entrega-grupo-20/routes/application-route
+  uid: 27500eb9-39db-4daa-bae5-beee9f563156
+  resourceVersion: '49405467'
+  creationTimestamp: '2022-04-02T13:12:58Z'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2022-04-02T13:12:58Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:host': {}
+          'f:to':
+            'f:kind': {}
+            'f:name': {}
+            'f:weight': {}
+          'f:wildcardPolicy': {}
+    - manager: openshift-router
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2022-04-02T13:12:58Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:ingress': {}
+spec:
+  host: fiap-entrega-grupo-20.apps.na46.prod.nextcle.com
+  to:
+    kind: Service
+    name: fiap-grupo-20
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: fiap-entrega-grupo-20.apps.na46.prod.nextcle.com
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2022-04-02T13:12:58Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: apps.na46.prod.nextcle.com

@@ -1,0 +1,45 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  selfLink: /api/v1/namespaces/entrega-grupo-20/persistentvolumeclaims/postgresql
+  resourceVersion: '47124354'
+  name: postgresql
+  uid: 66a71d12-51a5-46fa-827a-e3418dd7c342
+  creationTimestamp: '2022-03-31T20:19:50Z'
+  managedFields:
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: v1
+      time: '2022-03-31T20:19:50Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:template': {}
+            'f:template.openshift.io/template-instance-owner': {}
+        'f:spec':
+          'f:accessModes': {}
+          'f:resources':
+            'f:requests':
+              .: {}
+              'f:storage': {}
+          'f:volumeMode': {}
+        'f:status':
+          'f:phase': {}
+  namespace: entrega-grupo-20
+  finalizers:
+    - kubernetes.io/pvc-protection
+  labels:
+    template: postgresql-persistent-template
+    template.openshift.io/template-instance-owner: 8ade78af-fbd4-4421-bb5b-adfadb5d1151
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: standard
+  volumeMode: Filesystem
+status:
+  phase: Pending
