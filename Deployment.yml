@@ -3,31 +3,28 @@ apiVersion: apps/v1
 metadata:
   annotations:
     alpha.image.policy.openshift.io/resolve-names: '*'
-    app.openshift.io/vcs-ref: ''
-    app.openshift.io/vcs-uri: 'https://github.com/adrianoandrade/fiap-grupo-20'
-    deployment.kubernetes.io/revision: '2'
+    app.openshift.io/route-disabled: 'false'
+    deployment.kubernetes.io/revision: '1'
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"fiap-grupo-20:latest","namespace":"entrega-grupo-20"},"fieldPath":"spec.template.spec.containers[?(@.name==\"fiap-grupo-20\")].image","pause":"false"}]
+      [{"from":{"kind":"ImageStreamTag","name":"grupo20-java-api:latest","namespace":"entrega-grupo-20"},"fieldPath":"spec.template.spec.containers[?(@.name==\"grupo20-java-api\")].image","pause":"false"}]
     openshift.io/generated-by: OpenShiftWebConsole
-  selfLink: /apis/apps/v1/namespaces/entrega-grupo-20/deployments/fiap-grupo-20
-  resourceVersion: '47063667'
-  name: fiap-grupo-20
-  uid: 736da0ae-16a2-4083-a468-d4b9511fc6a4
-  creationTimestamp: '2022-03-31T19:16:24Z'
-  generation: 13
+  resourceVersion: '894377098'
+  name: grupo20-java-api
+  uid: 853bc353-3daa-4ef3-9bce-7192fdc00b8c
+  creationTimestamp: '2022-04-09T20:00:49Z'
+  generation: 1
   managedFields:
     - manager: Mozilla
       operation: Update
       apiVersion: apps/v1
-      time: '2022-03-31T19:16:24Z'
+      time: '2022-04-09T20:00:49Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
           'f:annotations':
             .: {}
             'f:alpha.image.policy.openshift.io/resolve-names': {}
-            'f:app.openshift.io/vcs-ref': {}
-            'f:app.openshift.io/vcs-uri': {}
+            'f:app.openshift.io/route-disabled': {}
             'f:image.openshift.io/triggers': {}
             'f:openshift.io/generated-by': {}
           'f:labels':
@@ -38,15 +35,12 @@ metadata:
             'f:app.kubernetes.io/name': {}
             'f:app.kubernetes.io/part-of': {}
             'f:app.openshift.io/runtime': {}
-            'f:app.openshift.io/runtime-version': {}
+            'f:app.openshift.io/runtime-namespace': {}
         'f:spec':
           'f:progressDeadlineSeconds': {}
           'f:replicas': {}
           'f:revisionHistoryLimit': {}
-          'f:selector':
-            'f:matchLabels':
-              .: {}
-              'f:app': {}
+          'f:selector': {}
           'f:strategy':
             'f:rollingUpdate':
               .: {}
@@ -55,23 +49,23 @@ metadata:
             'f:type': {}
           'f:template':
             'f:metadata':
+              'f:annotations':
+                .: {}
+                'f:openshift.io/generated-by': {}
               'f:labels':
                 .: {}
                 'f:app': {}
                 'f:deploymentconfig': {}
             'f:spec':
               'f:containers':
-                'k:{"name":"fiap-grupo-20"}':
+                'k:{"name":"grupo20-java-api"}':
                   .: {}
+                  'f:image': {}
                   'f:imagePullPolicy': {}
                   'f:name': {}
                   'f:ports':
                     .: {}
                     'k:{"containerPort":8080,"protocol":"TCP"}':
-                      .: {}
-                      'f:containerPort': {}
-                      'f:protocol': {}
-                    'k:{"containerPort":8443,"protocol":"TCP"}':
                       .: {}
                       'f:containerPort': {}
                       'f:protocol': {}
@@ -83,22 +77,10 @@ metadata:
               'f:schedulerName': {}
               'f:securityContext': {}
               'f:terminationGracePeriodSeconds': {}
-    - manager: openshift-controller-manager
-      operation: Update
-      apiVersion: apps/v1
-      time: '2022-03-31T19:16:57Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        'f:spec':
-          'f:template':
-            'f:spec':
-              'f:containers':
-                'k:{"name":"fiap-grupo-20"}':
-                  'f:image': {}
     - manager: kube-controller-manager
       operation: Update
       apiVersion: apps/v1
-      time: '2022-03-31T19:20:53Z'
+      time: '2022-04-09T20:00:55Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:metadata':
@@ -128,35 +110,36 @@ metadata:
           'f:readyReplicas': {}
           'f:replicas': {}
           'f:updatedReplicas': {}
+      subresource: status
   namespace: entrega-grupo-20
   labels:
-    app: fiap-grupo-20
-    app.kubernetes.io/component: fiap-grupo-20
-    app.kubernetes.io/instance: fiap-grupo-20
-    app.kubernetes.io/name: php
-    app.kubernetes.io/part-of: fiap-grupo-20-app
-    app.openshift.io/runtime: php
-    app.openshift.io/runtime-version: 7.3-ubi7
+    app: grupo20-java-api
+    app.kubernetes.io/component: grupo20-java-api
+    app.kubernetes.io/instance: grupo20-java-api
+    app.kubernetes.io/name: grupo20-java-api
+    app.kubernetes.io/part-of: grupo20-app
+    app.openshift.io/runtime: openjdk
+    app.openshift.io/runtime-namespace: entrega-grupo-20
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: fiap-grupo-20
+      app: grupo20-java-api
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: fiap-grupo-20
-        deploymentconfig: fiap-grupo-20
+        app: grupo20-java-api
+        deploymentconfig: grupo20-java-api
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
     spec:
       containers:
-        - name: fiap-grupo-20
+        - name: grupo20-java-api
           image: >-
-            image-registry.openshift-image-registry.svc:5000/entrega-grupo-20/fiap-grupo-20@sha256:dde983ea5ad9132d5fc5cce9099fa84800dd2e9ce5568e3d2ef639df4bd78ae0
+            image-registry.openshift-image-registry.svc:5000/entrega-grupo-20/grupo20-java-api@sha256:3eb6ad46742bf23ccd6668ccf1fa5571b5c4d276c01509d4f413ba6fbde0a72c
           ports:
             - containerPort: 8080
-              protocol: TCP
-            - containerPort: 8443
               protocol: TCP
           resources: {}
           terminationMessagePath: /dev/termination-log
@@ -175,21 +158,21 @@ spec:
   revisionHistoryLimit: 10
   progressDeadlineSeconds: 600
 status:
-  observedGeneration: 13
-  replicas: 2
-  updatedReplicas: 2
-  readyReplicas: 2
-  availableReplicas: 2
+  observedGeneration: 1
+  replicas: 1
+  updatedReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1
   conditions:
-    - type: Progressing
-      status: 'True'
-      lastUpdateTime: '2022-03-31T19:17:01Z'
-      lastTransitionTime: '2022-03-31T19:16:24Z'
-      reason: NewReplicaSetAvailable
-      message: ReplicaSet "fiap-grupo-20-6f9b65968c" has successfully progressed.
     - type: Available
       status: 'True'
-      lastUpdateTime: '2022-03-31T19:21:00Z'
-      lastTransitionTime: '2022-03-31T19:21:00Z'
+      lastUpdateTime: '2022-04-09T20:00:55Z'
+      lastTransitionTime: '2022-04-09T20:00:55Z'
       reason: MinimumReplicasAvailable
-      message: Deployment has minimum availability
+      message: Deployment has minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2022-04-09T20:00:55Z'
+      lastTransitionTime: '2022-04-09T20:00:49Z'
+      reason: NewReplicaSetAvailable
+      message: ReplicaSet "grupo20-java-api-5476bc95fc" has successfully progressed.

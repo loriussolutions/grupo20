@@ -1,0 +1,45 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: grupo20-api-ingress
+  namespace: entrega-grupo-20
+  uid: dcb21387-8158-49ab-946d-1a6983feeb95
+  resourceVersion: '894612769'
+  generation: 1
+  creationTimestamp: '2022-04-09T21:08:25Z'
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2022-04-09T21:08:25Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:rules': {}
+    - manager: openshift-controller-manager
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2022-04-09T21:08:25Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:loadBalancer':
+            'f:ingress': {}
+      subresource: status
+spec:
+  rules:
+    - host: >-
+        fiap-entrega-grupo-20.apps.na46.prod.nextcle.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grupo20-java-api
+                port:
+                  number: 8080
+status:
+  loadBalancer:
+    ingress:
+      - hostname: router-default.apps.na46.prod.nextcle.com

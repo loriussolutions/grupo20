@@ -1,22 +1,40 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: application-route
+  name: grupo20-java-api
   namespace: entrega-grupo-20
-  selfLink: >-
-    /apis/route.openshift.io/v1/namespaces/entrega-grupo-20/routes/application-route
-  uid: 27500eb9-39db-4daa-bae5-beee9f563156
-  resourceVersion: '49405467'
-  creationTimestamp: '2022-04-02T13:12:58Z'
+  uid: d684c999-77df-466f-adae-11f68220ed97
+  resourceVersion: '894376685'
+  creationTimestamp: '2022-04-09T20:00:49Z'
+  labels:
+    app: grupo20-java-api
+    app.kubernetes.io/component: grupo20-java-api
+    app.kubernetes.io/instance: grupo20-java-api
+    app.kubernetes.io/name: grupo20-java-api
+    app.kubernetes.io/part-of: grupo20-app
+    app.openshift.io/runtime-version: latest
+  annotations:
+    openshift.io/host.generated: 'true'
   managedFields:
     - manager: Mozilla
       operation: Update
       apiVersion: route.openshift.io/v1
-      time: '2022-04-02T13:12:58Z'
+      time: '2022-04-09T20:00:49Z'
       fieldsType: FieldsV1
       fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:app': {}
+            'f:app.kubernetes.io/component': {}
+            'f:app.kubernetes.io/instance': {}
+            'f:app.kubernetes.io/name': {}
+            'f:app.kubernetes.io/part-of': {}
+            'f:app.openshift.io/runtime-version': {}
         'f:spec':
-          'f:host': {}
+          'f:port':
+            .: {}
+            'f:targetPort': {}
           'f:to':
             'f:kind': {}
             'f:name': {}
@@ -25,25 +43,29 @@ metadata:
     - manager: openshift-router
       operation: Update
       apiVersion: route.openshift.io/v1
-      time: '2022-04-02T13:12:58Z'
+      time: '2022-04-09T20:00:49Z'
       fieldsType: FieldsV1
       fieldsV1:
         'f:status':
           'f:ingress': {}
+      subresource: status
 spec:
-  host: fiap-entrega-grupo-20.apps.na46.prod.nextcle.com
+  host: grupo20-java-api-entrega-grupo-20.apps.na46.prod.nextcle.com
   to:
     kind: Service
-    name: fiap-grupo-20
+    name: grupo20-java-api
     weight: 100
+  port:
+    targetPort: 8080-tcp
   wildcardPolicy: None
 status:
   ingress:
-    - host: fiap-entrega-grupo-20.apps.na46.prod.nextcle.com
+    - host: >-
+        grupo20-java-api-entrega-grupo-20.apps.na46.prod.nextcle.com
       routerName: default
       conditions:
         - type: Admitted
           status: 'True'
-          lastTransitionTime: '2022-04-02T13:12:58Z'
+          lastTransitionTime: '2022-04-09T20:00:49Z'
       wildcardPolicy: None
-      routerCanonicalHostname: apps.na46.prod.nextcle.com
+      routerCanonicalHostname: router-default.apps.na46.prod.nextcle.com

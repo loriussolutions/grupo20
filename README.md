@@ -3,6 +3,7 @@ Rodando o projeto
 
 docker build .
 
-docker run -d -p 8080:80 adrianoandradeb/7asoo:1.1
+docker run -d -p 8080:8080 loriussolutions/grupo20-jdk-api
 
-abrir o link http://localhost:8080/
+Lista de estudantes http://localhost:8080/api/students
+Criação de estudante http://localhost:8080/api/student/save?name=Maria
